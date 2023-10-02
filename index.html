@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ... your existing head content ... -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+  <h1>Andrews Shopping List Manager</h1>
+
+  <div id="add-item">
+    <input type="text" id="item" placeholder="Enter an item">
+    <input type="number" id="quantity" placeholder="Qty">
+    <button onclick="addItem()">Add Item</button>
+  </div>
+
+  <div id="filter-buttons">
+    <button onclick="showUnchecked()">Show Unchecked</button>
+    <button onclick="showChecked()">Show Checked</button>
+    <button onclick="showAll()">Show All</button>
+  </div>
+
+  <ul id="grocery-list"></ul>
+
+  <script>
+    // Load grocery list from localStorage if available
+    let groceryList = JSON.parse(localStorage.getItem('groceryList')) || [];
+
+    // Add item
+    function addItem() {
+      const item = document.getElementById("item").value;
+      const quantity = document.getElementById("quantity").value;
+      if (item) {
+        groceryList.push({
+          name: item,
+          quantity: quantity || 1, // Default quantity to 1 if not provided
+          bought: false
+        });
+        document.getElementById("item").value = "";
+        document.getElementById("quantity").value = "";
+        saveList();
+        displayList();
+      }
+    }
+
+    // Display list
+    function displayList() {
+      document.getElementById("grocery-list").innerHTML = "";
+      groceryList.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.className = item.bought ? "checked" : "";
+        li.innerHTML = `
+          <input type="checkbox" onchange="toggleItem(${index})" ${item.bought ? "checked" : ""}>
+          ${item.name} (Qty: ${item.quantity})
+          <button onclick="removeItem(${index})">Remove</button>
+        `;
+        document.getElementById("grocery-list").appendChild(li);
+      });
+    }
+
+    // Toggle bought
+    function toggleItem(index) {
+      groceryList[index].bought = !groceryList[index].bought;
+      saveList();
+      displayList();
+    }
+
+    // Remove item
+    function removeItem(index) {
+      groceryList.splice(index, 1);
+      saveList();
+      displayList();
+    }
+
+    // Save the grocery list to localStorage
+    function saveList() {
+      localStorage.setItem('groceryList', JSON.stringify(groceryList));
+    }
+
+    // Filtering functions
+    function showUnchecked() {
+      const uncheckedItems = groceryList.filter(item => !item.bought);
+      displayFilteredItems(uncheckedItems);
+    }
+
+    function showChecked() {
+      const checkedItems = groceryList.filter(item => item.bought);
+      displayFilteredItems(checkedItems);
+    }
+
+    function showAll() {
+      displayList();
+    }
+
+    function displayFilteredItems(filteredItems) {
+      document.getElementById("grocery-list").innerHTML = "";
+      filteredItems.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.className = item.bought ? "checked" : "";
+        li.innerHTML = `
+          <input type="checkbox" onchange="toggleItem(${index})" ${item.bought ? "checked" : ""}>
+          ${item.name} (Qty: ${item.quantity})
+          <button onclick="removeItem(${index})">Remove</button>
+        `;
+        document.getElementById("grocery-list").appendChild(li);
+      });
+    }
+
+    // Initial display
+    displayList();
+
+  </script>
+
+</body>
+
+</html>
