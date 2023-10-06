@@ -1,103 +1,102 @@
-/* style.css */
-
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f7f7;
-  }
-  
-  h1 {
-    text-align: center;
-    background-color: #3498db;
-    color: white;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  #add-item {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  #item {
-    padding: 10px;
-    border: 1px solid #ccc;
-    width: 60%;
-    font-size: 16px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #2980b9;
-  }
-  
-  /* Grocery List Styles */
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: white;
-    margin: 5px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  li.checked {
-    text-decoration: line-through;
-    color: #888;
-  }
-  
-  input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  
-  button.remove {
-    background-color: #e74c3c;
-  }
-  
-  button.remove:hover {
-    background-color: #c0392b;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 600px) {
-    #item {
-      width: 80%;
-    }
-  }
-  /* style.css */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
 
-/* ... your existing styles ... */
+h1 {
+  text-align: center;
+  background-color: #1a6ca3;
+  color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+}
 
-/* Quantity Input Styles */
+#add-item {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input Styles */
+#item, input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+#item {
+  width: 60%;
+}
+
 input[type="number"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    width: 10%;
-    font-size: 16px;
-    margin-left: 5px;
+  width: 10%;
+  margin-left: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Grocery List Styles */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: white;
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li.checked {
+  text-decoration: line-through;
+  color: #888;
+}
+
+li.checked button.remove {
+  text-decoration: none; /* Remove the line-through for the remove button */
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+button.remove {
+  background-color: #e74c3c;
+}
+
+button.remove:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  #item {
+      width: 80%;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 600px) {
-    /* ... your existing responsive styles ... */
-    input[type="number"] {
+
+  input[type="number"] {
       width: 20%;
-    }
   }
+
+  /* Add other responsive styles here */
+}
+
+
   
